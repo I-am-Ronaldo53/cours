@@ -1,218 +1,634 @@
-
-```html
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
-<link rel="stylesheet" type="text/css" href="./lib/style.css">
-<script type="text/javascript" src="./lib/hidebib.js"></script>
-<title>UNAP-EST315</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="keywords" content="gestión de proyectos TIC, GitHub, Notion, portafolios, ciencia de datos, desarrollo de software, redes, telecomunicaciones, estadística, PMBOK, Scrum, Kanban" />
-<meta name="description" content="Sílabo actualizado del curso de Gestión de Proyectos TICs - Ingeniería Estadística e Informática - UNAP" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro de Sílabos // 2026-I</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --bg: #0b0c0f;
+  --bg2: #141519;
+  --bg3: #1b1c22;
+  --line: #26272e;
+  --line-soft: #1c1d23;
+  --text: #f2f2f0;
+  --text-soft: #8b8d96;
+  --text-faint: #4b4d56;
+  --accent: #ff7a45;
+  --accent-dim: #b5572f;
+  --accent-glow: rgba(255,122,69,0.14);
+  --heading: 'Space Grotesk', sans-serif;
+  --body: 'Sora', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: 264px;
+  background: var(--bg2);
+  border-right: 1px solid var(--line-soft);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  padding: 1.75rem 1.5rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--line-soft);
+  margin-bottom: 1.75rem;
+}
+.brand-mark {
+  width: 34px; height: 34px;
+  background: var(--accent);
+  color: #0b0c0f;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+.brand-text { line-height: 1.3; }
+.brand-title { font-family: var(--heading); font-weight: 600; font-size: 0.85rem; }
+.brand-sub { font-family: var(--mono); font-size: 0.6rem; color: var(--text-faint); letter-spacing: 0.05em; }
+
+.side-nav { display: flex; flex-direction: column; gap: 0.15rem; }
+.side-nav a {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-soft);
+  text-decoration: none;
+  padding: 0.65rem 0.6rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: background 0.15s, color 0.15s;
+}
+.side-nav a:hover, .side-nav a.active { background: var(--bg3); color: var(--text); }
+.side-nav a.active { color: var(--accent); }
+.side-nav a .dash { color: var(--text-faint); }
+.side-nav a.active .dash { color: var(--accent); }
+
+.side-tag {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line-soft);
+}
+.side-tag-label { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.14em; color: var(--text-faint); text-transform: uppercase; }
+.side-tag-value { font-family: var(--heading); font-size: 0.95rem; font-weight: 600; color: var(--text); margin-top: 0.3rem; }
+.side-tag-sub { font-family: var(--mono); font-size: 0.6rem; color: var(--text-faint); margin-top: 0.2rem; }
+
+/* ===== MAIN ===== */
+.main {
+  margin-left: 264px;
+  flex: 1;
+  min-width: 0;
+}
+
+.topbar {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 2.5rem;
+  border-bottom: 1px solid var(--line-soft);
+  background: rgba(11,12,15,0.85);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.breadcrumb {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  letter-spacing: 0.02em;
+}
+.breadcrumb b { color: var(--accent); font-weight: 400; }
+
+/* ===== HEADER BLOCK ===== */
+.header-block {
+  padding: 3.5rem 2.5rem 2.5rem;
+  max-width: 900px;
+}
+.header-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: var(--accent-glow);
+  border: 1px solid var(--accent-dim);
+  padding: 0.35rem 0.7rem;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+}
+.header-tag .pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+}
+.header-title {
+  font-family: var(--heading);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.header-desc {
+  font-size: 0.98rem;
+  font-weight: 300;
+  color: var(--text-soft);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-top: 1.25rem;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+  margin-top: 2.5rem;
+  max-width: 560px;
+}
+.metric { background: var(--bg); padding: 1.1rem 1.4rem; }
+.metric-num { font-family: var(--heading); font-weight: 700; font-size: 1.7rem; color: var(--text); }
+.metric-num span { color: var(--accent); }
+.metric-label { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.1em; color: var(--text-faint); text-transform: uppercase; margin-top: 0.25rem; }
+
+/* ===== TIMELINE COURSE LIST ===== */
+.timeline-section {
+  padding: 1rem 2.5rem 5rem;
+  max-width: 900px;
+}
+.timeline-heading {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line-soft);
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeline { position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 21px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--line);
+}
+
+.t-item {
+  position: relative;
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.4rem 0;
+  cursor: pointer;
+}
+.t-node {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-soft);
+  position: relative;
+  z-index: 2;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.t-item:hover .t-node { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+
+.t-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-bottom: 1px solid var(--line-soft);
+  padding-bottom: 1.4rem;
+  min-width: 0;
+}
+.t-item:last-child .t-body { border-bottom: none; }
+.t-info { min-width: 0; }
+.t-title {
+  font-family: var(--heading);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--text);
+  transition: color 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.t-item:hover .t-title { color: var(--accent); }
+.t-meta {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--text-faint);
+  margin-top: 0.35rem;
+  letter-spacing: 0.03em;
+}
+.t-right { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+.t-code {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  color: var(--accent);
+  border: 1px solid var(--line);
+  padding: 0.32rem 0.6rem;
+  white-space: nowrap;
+}
+.t-arrow {
+  font-family: var(--heading);
+  color: var(--text-faint);
+  transition: transform 0.2s, color 0.2s;
+}
+.t-item:hover .t-arrow { transform: translateX(4px); color: var(--accent); }
+
+footer {
+  padding: 2rem 2.5rem;
+  border-top: 1px solid var(--line-soft);
+  max-width: 900px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-copy { font-family: var(--mono); font-size: 0.58rem; color: var(--text-faint); letter-spacing: 0.06em; text-transform: uppercase; }
+.footer-gh { font-family: var(--mono); font-size: 0.58rem; color: var(--text-soft); letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
+.footer-gh:hover { color: var(--accent); }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(4,4,5,0.78);
+  z-index: 500;
+  backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.modal-overlay.open { display: flex; }
+
+.modal-box {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  height: 90vh;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.6);
+  animation: popIn 0.18s ease;
+}
+
+@keyframes popIn {
+  from { opacity:0; transform: translateY(8px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+.pdf-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  height: 52px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.pdf-toolbar-left { display: flex; align-items: center; gap: 0.9rem; min-width: 0; }
+
+.tb-icon {
+  width: 30px; height: 30px;
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+.tb-icon:hover { border-color: var(--accent); color: var(--accent); }
+
+.tb-divider { width: 1px; height: 20px; background: var(--line); margin: 0 0.15rem; flex-shrink: 0; }
+
+.tb-title {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pdf-toolbar-right { display: flex; align-items: center; gap: 0.5rem; }
+
+.page-info {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.28rem 0.6rem;
+}
+
+.pdf-frame { flex: 1; width: 100%; border: none; background: #ffffff; }
+
+.pdf-loading {
+  display: none;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  background: #ffffff;
+}
+
+.pdf-loading-spinner {
+  width: 30px; height: 30px;
+  border: 2px solid #e4e4e4;
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.pdf-loading-text { font-family: var(--mono); font-size: 0.62rem; color: #9a9a9a; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.pdf-bottombar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.85rem 1.25rem;
+  background: var(--bg2);
+  border-top: 1px solid var(--line);
+  flex-shrink: 0;
+  gap: 0.75rem;
+}
+
+.btn-open-gh {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  background: none;
+  border: 1px solid var(--line);
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-open-gh:hover { color: var(--text); border-color: var(--accent); }
+
+.btn-close {
+  font-family: var(--body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #0b0c0f;
+  background: var(--accent);
+  border: none;
+  padding: 0.55rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  letter-spacing: 0.01em;
+}
+.btn-close:hover { background: #ff9668; }
+
+@media (max-width: 960px) {
+  .sidebar { transform: translateX(-100%); }
+  .main { margin-left: 0; }
+  .header-block { padding: 2rem 1.5rem; }
+  .timeline-section { padding: 1rem 1.5rem 4rem; }
+  .topbar { padding: 0 1.5rem; }
+  footer { padding: 2rem 1.5rem; }
+  .metrics { grid-template-columns: repeat(3, 1fr); }
+  .modal-overlay { padding: 0; }
+  .modal-box { max-width: 100%; height: 100vh; border: none; }
+  .tb-title { max-width: 140px; }
+}
+@media (max-width: 560px) {
+  .t-code { display: none; }
+  .t-meta { display: none; }
+  footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+}
+</style>
 </head>
+<body>
 
-<body style="background-color: #060913; margin: 0; padding:0;">
-<div style="padding: 25px;">
-<table width="800" border="0" align="center" cellpadding="20" style="background-color: #fff;">
-<tr>
-<td>
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-mark">S</div>
+    <div class="brand-text">
+      <div class="brand-title">Sílabos</div>
+      <div class="brand-sub">EEI · UNA PUNO</div>
+    </div>
+  </div>
+  <nav class="side-nav">
+    <a href="#inicio" class="active"><span class="dash">#</span> inicio</a>
+    <a href="#cursos"><span class="dash">#</span> cursos</a>
+    <a href="https://github.com/BRy4n1-gif/Silabos6" target="_blank"><span class="dash">#</span> repositorio</a>
+  </nav>
+  <div class="side-tag">
+    <div class="side-tag-label">Periodo activo</div>
+    <div class="side-tag-value">2026 – I</div>
+    <div class="side-tag-sub">6 cursos registrados</div>
+  </div>
+</aside>
 
-<table width="100%" align="center" border="0" cellpadding="10">
-<tr>
-<td width="70%" style="vertical-align: top; text-align: left;">
-<p style="font-size: 36px;">Gestión de Proyectos TICs</p>
-<p style="font-size: 16px;">
-Ingeniería Estadística e Informática<br>
-Facultad de Ingeniería Estadística e Informática<br>
-Universidad Nacional del Altiplano - Puno
-</p>
-<p style="font-size: 16px;">
-Código: EST315 | Ciclo: VI | Créditos: 4<br>
-Horas: 3 teóricas, 2 prácticas | Total: 5 horas
-</p>
-<p style="font-size: 16px;">
-Prof. M. Sc. Romel Percy Melgarejo Bolívar
-</p>
-</td>
-<td width="30%" valign="bottom" align="right"></td>
-</tr>
+<div class="main">
+  <div class="topbar">
+    <div class="breadcrumb">una-puno / eei / <b>silabos-2026-i</b></div>
+  </div>
 
-<tr>
-<td colspan="2">
-<p>
-<a href="#sumilla">Sumilla</a> |
-<a href="#logro">Logro</a> |
-<a href="#contenido">Contenido</a> |
-<a href="#metodologia">Metodología</a> |
-<a href="#evaluacion">Evaluación</a> |
-<a href="#entregables">Entregables</a> |
-<a href="#recursos">Recursos</a> |
-<a href="#bibliografia">Bibliografía</a> |
-<a href="#contacto">Contacto</a>
-</p>
-</td>
-</tr>
-</table>
+  <section class="header-block" id="inicio">
+    <div class="header-tag"><span class="pulse"></span> Ciclo académico en curso</div>
+    <h1 class="header-title">Registro de sílabos del semestre</h1>
+    <p class="header-desc">Ingeniería Estadística e Informática — documentos oficiales de cada curso. Selecciona uno para abrir el sílabo en pantalla.</p>
 
-<hr/>
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-num"><span>06</span></div>
+        <div class="metric-label">Cursos</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">I</div>
+        <div class="metric-label">Semestre</div>
+      </div>
+      <div class="metric">
+        <div class="metric-num">2026</div>
+        <div class="metric-label">Año</div>
+      </div>
+    </div>
+  </section>
 
-<heading id="sumilla">Sumilla</heading>
-<p style="text-align: justify">
-El curso de Gestión de Proyectos TICs corresponde al área de Estudios de Especialidad y es de naturaleza teórico-práctica. Tiene como propósito desarrollar competencias para formular, planificar, ejecutar, monitorear, controlar y cerrar proyectos tecnológicos vinculados a la Ingeniería Estadística e Informática.
-</p>
+  <section class="timeline-section" id="cursos">
+    <div class="timeline-heading">
+      <span>Índice de cursos</span>
+      <span>Clic para abrir</span>
+    </div>
+    <div class="timeline" id="coursesGrid"></div>
+  </section>
 
-<p style="text-align: justify">
-El curso se orienta a la gestión de portafolios de proyectos desde el inicio hasta el cierre, integrando las principales líneas de desarrollo profesional de la carrera: desarrollo de software, programación, diseño de sistemas, redes y telecomunicaciones, estadística aplicada, ciencia de datos, inteligencia artificial, análisis estadístico y asesorías de tesis relacionadas con el procesamiento de datos.
-</p>
-
-<p style="text-align: justify">
-Para ello, los estudiantes utilizarán herramientas colaborativas como GitHub, GitHub Projects y Notion, aplicando metodologías tradicionales, ágiles e híbridas como PMBOK, Scrum, Kanban, Design Thinking y gestión basada en evidencias. El curso promueve el trabajo en equipo, la trazabilidad, la documentación técnica, la gestión de tareas, la comunicación efectiva y la entrega progresiva de valor mediante proyectos reales.
-</p>
-
-<hr/>
-
-<heading id="logro">Logro del curso</heading>
-<p style="text-align: justify">
-Al finalizar el curso, el estudiante gestiona portafolios y proyectos de Tecnologías de Información y Comunicación aplicando metodologías tradicionales, ágiles e híbridas para planificar, ejecutar, monitorear y controlar iniciativas relacionadas con desarrollo de software, redes y telecomunicaciones, estadística, ciencia de datos, inteligencia artificial e investigación aplicada, utilizando herramientas digitales que garanticen trazabilidad, calidad y cumplimiento de objetivos durante todo el ciclo de vida del proyecto.
-</p>
-
-<hr/>
-
-<heading id="contenido">Contenido</heading>
-
-<div class="pub">
-<heading>Unidad I: Formulación, planificación y organización del portafolio de proyectos TIC</heading>
-<p><b>Duración:</b> Semanas 1 al 9</p>
-<p><b>Logro de unidad:</b> Formula y organiza un proyecto TIC real mediante la identificación de problemas, definición de objetivos, planificación de entregables y construcción de un portafolio digital en GitHub y Notion.</p>
-
-<ul>
-<li><b>Semana 1:</b> Presentación del curso. Enfoque por proyectos y portafolios. Líneas de trabajo: software, redes, estadística, ciencia de datos e investigación.</li>
-<li><b>Semana 2:</b> Gestión de proyectos TIC. Proyecto, programa y portafolio. Ciclo de vida del proyecto.</li>
-<li><b>Semana 3:</b> Identificación de problemas, necesidades y oportunidades en contextos reales.</li>
-<li><b>Semana 4:</b> Design Thinking e ideación de proyectos tecnológicos.</li>
-<li><b>Semana 5:</b> Formulación del proyecto: problema, objetivos, alcance, entregables e indicadores.</li>
-<li><b>Semana 6:</b> Acta de constitución del proyecto. Roles, responsabilidades e interesados.</li>
-<li><b>Semana 7:</b> Organización del portafolio en Notion: documentación, cronograma, bitácora y evidencias.</li>
-<li><b>Semana 8:</b> Organización del repositorio en GitHub: estructura, README, issues, milestones y control de versiones.</li>
-<li><b>Semana 9:</b> Sustentación parcial del proyecto: pitch, Project Charter, tablero de seguimiento y portafolio inicial.</li>
-</ul>
+  <footer>
+    <span class="footer-copy">© 2025 — Sílabos</span>
+    <a href="https://github.com/I-am-Ronaldo53/cours/tree/main/finesi/gitcs2026" class="footer-gh" target="_blank">GitHub →</a>
+  </footer>
 </div>
 
-<div class="pub">
-<heading>Unidad II: Ejecución, seguimiento, control y cierre de proyectos TIC</heading>
-<p><b>Duración:</b> Semanas 10 al 18</p>
-<p><b>Logro de unidad:</b> Ejecuta, monitorea y cierra un proyecto TIC aplicando metodologías ágiles, gestión visual, control de riesgos, indicadores de avance y presentación de resultados mediante un portafolio digital funcional.</p>
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <div class="pdf-toolbar">
+      <div class="pdf-toolbar-left">
+        <button class="tb-icon" title="Menú">☰</button>
+        <div class="tb-divider"></div>
+        <span class="tb-title" id="tbTitle">—</span>
+      </div>
+      <div class="pdf-toolbar-right">
+        <span class="page-info" id="tbPage">PDF</span>
+        <button class="tb-icon" title="Buscar">🔍</button>
+        <button class="tb-icon" title="Guardar" id="tbDownload">⬇</button>
+        <button class="tb-icon" title="Más opciones">⋯</button>
+      </div>
+    </div>
 
-<ul>
-<li><b>Semana 10:</b> PMBOK aplicado a proyectos TIC. Enfoques predictivos, adaptativos e híbridos.</li>
-<li><b>Semana 11:</b> Scrum aplicado a proyectos de software, ciencia de datos, redes e investigación.</li>
-<li><b>Semana 12:</b> Kanban y gestión visual de tareas mediante GitHub Projects y Notion.</li>
-<li><b>Semana 13:</b> Gestión del cronograma, recursos, costos y responsabilidades del equipo.</li>
-<li><b>Semana 14:</b> Gestión de riesgos, calidad y cambios en proyectos TIC.</li>
-<li><b>Semana 15:</b> Métricas e indicadores: avance, cumplimiento, productividad, backlog, issues y evidencias.</li>
-<li><b>Semana 16:</b> Documentación técnica, informe del proyecto, manuales, reportes estadísticos o reportes de ciencia de datos.</li>
-<li><b>Semana 17:</b> Preparación de la presentación final: demo, dashboard, prototipo, análisis, informe o solución implementada.</li>
-<li><b>Semana 18:</b> Presentación final, cierre del proyecto, evaluación del portafolio y reflexión del aprendizaje.</li>
-</ul>
+    <div class="pdf-loading" id="pdfLoading">
+      <div class="pdf-loading-spinner"></div>
+      <div class="pdf-loading-text">Cargando documento...</div>
+    </div>
+    <iframe class="pdf-frame" id="mFrame" src="about:blank"
+      onload="onFrameLoad()" style="display:none"></iframe>
+
+    <div class="pdf-bottombar">
+      <a class="btn-open-gh" id="btnGH" href="#" target="_blank">Abrir en GitHub</a>
+      <button class="btn-close" onclick="closeModal()">Cerrar</button>
+    </div>
+  </div>
 </div>
 
-<hr/>
+<script>
+const GH_USER   = 'I-am-Ronaldo53';
+const GH_REPO   = 'cours';
+const GH_BRANCH = 'main';
+const GH_PATH   = 'finesi/gitcs2026/';
 
-<heading id="metodologia">Metodología</heading>
-<div class="pub">
-<ul>
-<li>Aprendizaje basado en proyectos.</li>
-<li>Trabajo colaborativo por equipos.</li>
-<li>Uso obligatorio de GitHub, GitHub Projects y Notion.</li>
-<li>Aplicación de Scrum, Kanban, PMBOK y metodologías híbridas.</li>
-<li>Desarrollo de portafolios digitales de proyectos.</li>
-<li>Asesoría continua y revisión semanal de avances.</li>
-<li>Presentaciones parciales y finales tipo Demo Day.</li>
-</ul>
-</div>
+const COURSES = [
+  { code:'EST314', title:'Aprendizaje No Supervisado',         pdf:'aprendizajeNoSupervisado.pdf',       meta:'Obligatorio · Único grupo' },
+  { code:'EST316', title:'Arquitectura de Redes y Protocolos', pdf:'arquitecturaDeRedesYProtocolos.pdf', meta:'Obligatorio · Único grupo' },
+  { code:'EST315', title:'Gestión de Proyectos TICS',          pdf:'gestionDeProyectosTICS.pdf',         meta:'Obligatorio · Único grupo' },
+  { code:'EST210', title:'Modelos Lineales',                   pdf:'modelosLineales.pdf',                meta:'Obligatorio · Único grupo' },
+  { code:'EST209', title:'Regresión Lineal y No Lineal',       pdf:'regresionLinealYNoLineal.pdf',       meta:'Obligatorio · Único grupo' },
+  { code:'EST317', title:'Series de Tiempo',                   pdf:'seriesDeTiempo.pdf',                 meta:'Obligatorio · Único grupo' }
+];
 
-<hr/>
+function rawUrl(path) {
+  return `https://raw.githubusercontent.com/${GH_USER}/${GH_REPO}/${GH_BRANCH}/${GH_PATH}${path}`;
+}
 
-<heading id="evaluacion">Evaluación</heading>
-<div class="pub">
-<ul>
-<li><b>Portafolio digital en Notion y GitHub:</b> 25%</li>
-<li><b>Entregable parcial de la Unidad I:</b> 25%</li>
-<li><b>Seguimiento, avances y gestión del proyecto:</b> 20%</li>
-<li><b>Producto final, informe y sustentación:</b> 25%</li>
-<li><b>Participación, autoevaluación y coevaluación:</b> 5%</li>
-</ul>
-</div>
+function viewerUrl(path) {
+  return `https://docs.google.com/gview?url=${encodeURIComponent(rawUrl(path))}&embedded=true`;
+}
 
-<hr/>
+function buildGrid() {
+  document.getElementById('coursesGrid').innerHTML = COURSES.map((c, i) => `
+    <div class="t-item" onclick="openModal(${i})">
+      <div class="t-node">${String(i+1).padStart(2,'0')}</div>
+      <div class="t-body">
+        <div class="t-info">
+          <div class="t-title">${c.title}</div>
+          <div class="t-meta">${c.meta}</div>
+        </div>
+        <div class="t-right">
+          <span class="t-code">${c.code}</span>
+          <span class="t-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
 
-<heading id="entregables">Entregables</heading>
-<div class="pub">
-<ul>
-<li>Idea de proyecto TIC.</li>
-<li>Project Charter.</li>
-<li>Portafolio en Notion.</li>
-<li>Repositorio en GitHub.</li>
-<li>Tablero Kanban o Scrum.</li>
-<li>Bitácora de avances.</li>
-<li>Cronograma del proyecto.</li>
-<li>Matriz de riesgos.</li>
-<li>Informe técnico o científico.</li>
-<li>Producto funcional, prototipo, dashboard, análisis estadístico, modelo de datos o solución implementada.</li>
-<li>Presentación final del proyecto.</li>
-</ul>
-</div>
+function openModal(i) {
+  const c = COURSES[i];
+  const raw = rawUrl(c.pdf);
+  const viewer = viewerUrl(c.pdf);
 
-<hr/>
+  document.getElementById('tbTitle').textContent = c.code + ' — ' + c.title;
+  document.getElementById('tbPage').textContent  = 'PDF';
+  document.getElementById('btnGH').href = `https://github.com/${GH_USER}/${GH_REPO}/blob/${GH_BRANCH}/${GH_PATH}${c.pdf}`;
+  document.getElementById('tbDownload').onclick = () => window.open(raw, '_blank');
 
-<heading id="recursos">Recursos</heading>
-<div class="pub">
-<ul>
-<li><a href="https://github.com/" target="_blank">GitHub</a></li>
-<li><a href="https://docs.github.com/en/issues/planning-and-tracking-with-projects" target="_blank">GitHub Projects</a></li>
-<li><a href="https://notion.so/" target="_blank">Notion</a></li>
-<li><a href="https://www.pmi.org/" target="_blank">Project Management Institute</a></li>
-<li><a href="https://www.scrum.org/" target="_blank">Scrum.org</a></li>
-<li><a href="https://trello.com/" target="_blank">Trello</a></li>
-<li><a href="https://www.atlassian.com/software/jira" target="_blank">Jira</a></li>
-<li><a href="https://colab.research.google.com/" target="_blank">Google Colab</a></li>
-</ul>
-</div>
+  const frame = document.getElementById('mFrame');
+  const loading = document.getElementById('pdfLoading');
+  frame.style.display = 'none';
+  loading.style.display = 'flex';
+  frame.src = viewer;
 
-<hr/>
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 
-<heading id="bibliografia">Bibliografía</heading>
-<div class="pub">
-<ul>
-<li>Project Management Institute. PMBOK® Guide – Seventh Edition. PMI, 2021.</li>
-<li>Schwaber, K. & Sutherland, J. The Scrum Guide. 2020.</li>
-<li>Schwalbe, K. Information Technology Project Management. Cengage Learning.</li>
-<li>Meredith, J. R. & Mantel, S. J. Project Management: A Managerial Approach.</li>
-<li>Pressman, R. Ingeniería del Software: Un enfoque práctico.</li>
-<li>Kerzner, H. Project Management: A Systems Approach to Planning, Scheduling, and Controlling.</li>
-<li>Wysocki, R. Effective Project Management: Traditional, Agile, Extreme, Hybrid.</li>
-</ul>
-</div>
+function onFrameLoad() {
+  document.getElementById('pdfLoading').style.display = 'none';
+  document.getElementById('mFrame').style.display = 'block';
+}
 
-<hr/>
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.getElementById('mFrame').src = 'about:blank';
+  document.getElementById('mFrame').style.display = 'none';
+  document.getElementById('pdfLoading').style.display = 'none';
+  document.body.style.overflow = '';
+}
 
-<heading id="contacto">Contacto</heading>
-<p>permelro@unap.edu.pe</p>
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
 
-<hr/>
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-<div id="footer">
-<heading>&copy; 2026 UNAP - © FINESI © - Ingeniería Estadística e Informática</heading>
-</div>
-
-</td>
-</tr>
-</table>
-<div style="height: 40px;"></div>
-</div>
-
-<script xml:space="preserve" language="JavaScript">hideallbibs();</script>
+buildGrid();
+</script>
 </body>
 </html>
-```
