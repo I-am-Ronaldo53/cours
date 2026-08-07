@@ -568,7 +568,7 @@ function rawUrl(path) {
 }
 
 function viewerUrl(path) {
-  return `https://docs.google.com/gview?url=${encodeURIComponent(rawUrl(path))}&embedded=true`;
+  return rawUrl(path);
 }
 
 function buildGrid() {
