@@ -10,3 +10,5 @@ Curso de Ingeniería Estadística e Informática
 ## Docente
 
 Romel Percy Melgarejo Bolívar
+
+## Página de Sílabos 👉 [Ver sílabos en línea](https://i-am-ronaldo53.github.io/cours/finesi/gitcs2026/)
