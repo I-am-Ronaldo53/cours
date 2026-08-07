@@ -568,7 +568,7 @@ function rawUrl(path) {
 }
 
 function viewerUrl(path) {
-  return rawUrl(path);
+  return `https://${GH_USER}.github.io/${GH_REPO}/${GH_PATH}${path}`;
 }
 
 function buildGrid() {
